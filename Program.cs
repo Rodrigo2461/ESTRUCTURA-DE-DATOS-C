@@ -71,6 +71,24 @@ namespace AgendaTelefonica
                 Console.WriteLine($"- {contactos[i].Nombre} | {contactos[i].Telefono} | {contactos[i].Correo} | {contactos[i].Categoria}");
             }
         }
+
+        public void BuscarContacto(string nombre)
+        {
+            bool encontrado = false;
+            for (int i = 0; i < indiceActual; i++)
+            {
+                if (contactos[i].Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine($"Contacto Encontrado: {contactos[i].Nombre} | {contactos[i].Telefono} | {contactos[i].Correo}");
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (!encontrado)
+            {
+                Console.WriteLine("Contacto no encontrado.");
+            }
+        }
     }
 
     // 1. Arquitectura Obligatoria: Clase Program principal
