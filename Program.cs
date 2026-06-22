@@ -96,19 +96,61 @@ namespace AgendaTelefonica
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Estructura base de Agenda iniciada.");
             Agenda miAgenda = new Agenda();
+            int opcion = 0;
 
-            Console.WriteLine("\n--- Agregando Contactos ---");
-            miAgenda.AgregarContacto(new Contacto { Nombre = "Juan Perez", Telefono = "0991234567", Correo = "juan@example.com", Categoria = "Trabajo" });
-            miAgenda.AgregarContacto(new Contacto { Nombre = "Maria Lopez", Telefono = "0987654321", Correo = "maria@example.com", Categoria = "Personal" });
-            miAgenda.AgregarContacto(new Contacto { Nombre = "Carlos Ruiz", Telefono = "0976543210", Correo = "carlos@example.com", Categoria = "Trabajo" });
-            
-            Console.WriteLine("\n--- Mostrando Contactos ---");
-            miAgenda.MostrarContactos();
+            do
+            {
+                Console.WriteLine("\n=== MENÚ DE AGENDA TELEFÓNICA ===");
+                Console.WriteLine("1. Agregar Contacto");
+                Console.WriteLine("2. Mostrar todos los Contactos");
+                Console.WriteLine("3. Consultar Contacto por Nombre");
+                Console.WriteLine("4. Salir");
+                Console.Write("Seleccione una opción: ");
 
-            Console.WriteLine("\n--- Buscando Contacto ---");
-            miAgenda.BuscarContacto("Maria Lopez");
+                if (int.TryParse(Console.ReadLine(), out opcion))
+                {
+                    switch (opcion)
+                    {
+                        case 1:
+                            Contacto nuevoContacto = new Contacto();
+                            Console.WriteLine("\n[Agregando nuevo contacto]");
+                            Console.Write("Ingrese el Nombre: ");
+                            nuevoContacto.Nombre = Console.ReadLine() ?? "";
+                            Console.Write("Ingrese el Teléfono: ");
+                            nuevoContacto.Telefono = Console.ReadLine() ?? "";
+                            Console.Write("Ingrese el Correo: ");
+                            nuevoContacto.Correo = Console.ReadLine() ?? "";
+                            Console.Write("Ingrese la Categoría (Ej. Trabajo, Familia): ");
+                            nuevoContacto.Categoria = Console.ReadLine() ?? "";
+                            
+                            miAgenda.AgregarContacto(nuevoContacto);
+                            Console.WriteLine("=> Contacto agregado exitosamente.");
+                            break;
+                        case 2:
+                            Console.WriteLine("\n[Listando contactos]");
+                            miAgenda.MostrarContactos();
+                            break;
+                        case 3:
+                            Console.WriteLine("\n[Buscando contacto]");
+                            Console.Write("Ingrese el nombre exacto a consultar: ");
+                            string nombre = Console.ReadLine() ?? "";
+                            miAgenda.BuscarContacto(nombre);
+                            break;
+                        case 4:
+                            Console.WriteLine("Saliendo de la agenda...");
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida. Intente de nuevo.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Entrada no válida. Ingrese un número.");
+                    opcion = 0;
+                }
+            } while (opcion != 4);
         }
     }
 }
