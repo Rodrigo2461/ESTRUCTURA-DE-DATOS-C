@@ -97,6 +97,18 @@ namespace AgendaTelefonica
         static void Main(string[] args)
         {
             Console.WriteLine("Estructura base de Agenda iniciada.");
+            Agenda miAgenda = new Agenda();
+
+            Console.WriteLine("\n--- Agregando Contactos ---");
+            miAgenda.AgregarContacto(new Contacto { Nombre = "Juan Perez", Telefono = "0991234567", Correo = "juan@example.com", Categoria = "Trabajo" });
+            miAgenda.AgregarContacto(new Contacto { Nombre = "Maria Lopez", Telefono = "0987654321", Correo = "maria@example.com", Categoria = "Personal" });
+            miAgenda.AgregarContacto(new Contacto { Nombre = "Carlos Ruiz", Telefono = "0976543210", Correo = "carlos@example.com", Categoria = "Trabajo" });
+            
+            Console.WriteLine("\n--- Mostrando Contactos ---");
+            miAgenda.MostrarContactos();
+
+            Console.WriteLine("\n--- Buscando Contacto ---");
+            miAgenda.BuscarContacto("Maria Lopez");
         }
     }
 }
