@@ -62,6 +62,15 @@ namespace AgendaTelefonica
 
             contactos = nuevoArreglo;
         }
+
+        public void MostrarContactos()
+        {
+            Console.WriteLine("Lista de Contactos:");
+            for (int i = 0; i < indiceActual; i++)
+            {
+                Console.WriteLine($"- {contactos[i].Nombre} | {contactos[i].Telefono} | {contactos[i].Correo} | {contactos[i].Categoria}");
+            }
+        }
     }
 
     // 1. Arquitectura Obligatoria: Clase Program principal
